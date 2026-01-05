@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/adapters/" />
+  <Folder Name="/adapters/input/">
+    <Project Path="Restaurant.Order.Facade/Restaurant.Order.Facade.csproj" Id="abdf2a82-1339-4f02-a5cb-d5f8a0964905" />
+    <Project Path="Restaurant.Order.Presenter/Restaurant.Order.Presenter.csproj" Id="a043e3ac-ada9-4628-a8db-00872d7a536b" />
+    <Project Path="Restaurant.Order.WebApi/Restaurant.Order.WebApi.csproj" Id="ce06a506-fa0f-47d7-ae5c-125cd817e891" />
+  </Folder>
+  <Folder Name="/adapters/output/">
+    <Project Path="Restaurant.Order.Data/Restaurant.Order.Data.csproj" Id="781d85d0-b048-4aa7-93f1-ffb2afa5dca4" />
+    <Project Path="Restaurant.Order.ExternalServices/Restaurant.Order.ExternalServices.csproj" Id="a3d4cd3d-c5b9-4f6c-96ee-83cd9cc72af0" />
+  </Folder>
+  <Folder Name="/core/">
+    <Project Path="Restaurant.Order.Application/Restaurant.Order.Application.csproj" Id="9f75e5fa-4284-47b2-a018-c07c9e11d397" />
+    <Project Path="Restaurant.Order.Model/Restaurant.Order.Model.csproj" Id="d0567f36-4c55-402a-a832-753a9184c3ed" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="Restaurant.Order.Application.Test/Restaurant.Order.Application.Test.csproj" Id="214b030b-94b0-4c17-aaeb-21a6313d36f4" />
+    <Project Path="Restaurant.Order.Model.Test/Restaurant.Order.Model.Test.csproj" Id="47aa239b-fc5e-4f5c-a0c5-dee014514787" />
+  </Folder>
+</Solution>
