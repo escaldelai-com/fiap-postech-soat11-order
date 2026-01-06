@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Restaurant.Order.Application.Interfaces.WebApi;
+using Restaurant.Order.WebApi.Security;
+using Restaurant.Order.WebApi.Services;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -10,6 +13,8 @@ public static class Configuration
 
     public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration config)
     {
+        services.AddHttpContextAccessor();
+        services.AddScoped<ISecurityService, SecurityService>();
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -23,28 +28,6 @@ public static class Configuration
                     IssuerSigningKey = GetKey(config),
                     ValidateLifetime = true,
                 };
-
-                options.Events = new JwtBearerEvents
-                {
-                    OnAuthenticationFailed = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("JwtAuth");
-                        logger.LogError(context.Exception, "JWT authentication failed");
-                        return Task.CompletedTask;
-                    },
-                    OnChallenge = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("JwtAuth");
-                        logger.LogWarning("OnChallenge: error={Error}, description={Description}", context.Error, context.ErrorDescription);
-                        return Task.CompletedTask;
-                    },
-                    OnTokenValidated = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("JwtAuth");
-                        logger.LogInformation("Token validated for {sub}", context.Principal?.FindFirst("sub")?.Value);
-                        return Task.CompletedTask;
-                    }
-                };
             });
 
         return services;
@@ -54,9 +37,8 @@ public static class Configuration
     {
         services.AddAuthorization(config =>
         {
-            config.AddPolicy("client", builder => builder.RequireClaim(ClaimTypes.Role, "client"));
-            config.AddPolicy("payment", builder => builder.RequireClaim(ClaimTypes.Role, "payment"));
-            config.AddPolicy("admin", builder => builder.RequireClaim(ClaimTypes.Role, "admin"));
+            foreach (var claim in Claims.All)
+                config.AddPolicy(claim, builder => builder.RequireClaim(ClaimTypes.Role, claim));
         });
 
         return services;

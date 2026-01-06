@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Facade;
 using Restaurant.Order.Model;
@@ -12,7 +13,7 @@ public class ProductController(
 {
 
     [HttpGet("{id}")]
-    [AuthorizeClient]
+    [Authorize(Claims.Product.Get)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDto))]
     public async Task<IActionResult> Get(string? id)
     {
@@ -24,7 +25,7 @@ public class ProductController(
     }
 
     [HttpGet("list/{type}")]
-    [AuthorizeClient]
+    [Authorize(Claims.Product.GetByType)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
     public async Task<IActionResult> GetByType(string type)
     {
@@ -36,7 +37,7 @@ public class ProductController(
     }
 
     [HttpPost]
-    [AuthorizeAdmin]
+    [Authorize(Claims.Product.Create)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
     public async Task<IActionResult> Create([FromBody] ProductDto product)
     {
@@ -46,7 +47,7 @@ public class ProductController(
     }
 
     [HttpPut]
-    [AuthorizeAdmin]
+    [Authorize(Claims.Product.Update)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update([FromBody] ProductDto product)
@@ -68,7 +69,7 @@ public class ProductController(
     }
 
     [HttpDelete("{id}")]
-    [AuthorizeAdmin]
+    [Authorize(Claims.Product.Delete)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(string id)

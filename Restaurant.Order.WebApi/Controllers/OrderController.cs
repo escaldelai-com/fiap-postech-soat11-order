@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Facade;
 using Restaurant.Order.WebApi.Security;
@@ -10,18 +11,8 @@ public class OrderController(
     IOrderFacade facade) : Controller
 {
 
-    [HttpGet("waiting")]
-    [AuthorizeAdmin]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<OrderInfoDto>))]
-    public async Task<IActionResult> GetWaiting()
-    {
-        var result = await facade.GetWaiting();
-
-        return Ok(result);
-    }
-
     [HttpPost]
-    [AuthorizeClient]
+    [Authorize(Claims.Order.Create)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Create([FromBody]ClientDto client)
@@ -34,7 +25,7 @@ public class OrderController(
     }
 
     [HttpPost("items")]
-    [AuthorizeClient]
+    [Authorize(Claims.Order.AddItem)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AddItem([FromBody] OrderInfoRequestDto req)
@@ -45,7 +36,7 @@ public class OrderController(
     }
 
     [HttpPost("confirm")]
-    [AuthorizeClient]
+    [Authorize(Claims.Order.Confirm)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Confirm([FromBody] OrderInfoRequestDto req)
@@ -56,7 +47,7 @@ public class OrderController(
     }
 
     [HttpPost("cancel")]
-    [AuthorizeClient]
+    [Authorize(Claims.Order.Cancel)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Cancel([FromBody] OrderInfoRequestDto req)
@@ -68,7 +59,7 @@ public class OrderController(
 
 
     [HttpPost("pay")]
-    [AuthorizePayment]
+    [Authorize(Claims.Order.ConfirmPayment)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ConfirmPayment([FromBody] OrderInfoRequestDto req)

@@ -5,8 +5,6 @@ namespace Restaurant.Order.Application.Interfaces.Facade;
 public interface IOrderFacade
 {
 
-    Task<IEnumerable<OrderInfoDto>> GetWaiting();
-
     Task<OrderInfoDto> CreateById(string clientId);
 
     Task<OrderInfoDto> CreateByCpf(string cpf);

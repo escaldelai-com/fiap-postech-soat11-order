@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Facade;
 using Restaurant.Order.WebApi.Security;
@@ -11,7 +12,7 @@ public class ProductTypeController(
 {
 
     [HttpGet]
-    [AuthorizeAdmin]
+    [Authorize(Claims.ProductType.GetList)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductTypeDto>))]
     public async Task<IActionResult> GetList()
     {

@@ -3,7 +3,6 @@ using Restaurant.Order.Application.Interfaces.ExternalServices;
 using Restaurant.Order.Application.Interfaces.Facade;
 using Restaurant.Order.Application.Interfaces.Repository;
 using Restaurant.Order.Application.Interfaces.UseCases;
-using Restaurant.Order.Model;
 
 namespace Restaurant.Order.Facade;
 
@@ -11,35 +10,12 @@ public class OrderFacade(
     IIdentificationService idService,
     IPaymentService payService,
     IPreparationService prepService,
-    IOrderRepository repo,
     IOrderInfoCreateUseCase createUseCase,
     IOrderInfoAddItemUseCase addItemUseCase,
     IOrderInfoConfirmUseCase confirmUseCase,
     IOrderInfoCancelUseCase cancelUseCase,
     IOrderInfoConfirmPayUseCase payUseCase) : IOrderFacade
 {
-
-    public async Task<IEnumerable<OrderInfoDto>> GetWaiting()
-    {
-        var orders = await repo.GetListByStatuses(
-            OrderStatus.Paid,
-            OrderStatus.Received,
-            OrderStatus.Preparing,
-            OrderStatus.Delivery);
-
-        if (!orders.Any())
-            return orders;
-
-        var dic = await GetClients(orders);
-
-        foreach (var order in orders)
-        {
-            if (dic.TryGetValue(order.Cliente!.Id!, out var client))
-                order.Cliente = client;
-        }
-
-        return orders;
-    }
 
     public async Task<OrderInfoDto> CreateById(string clientId)
     {
@@ -89,15 +65,6 @@ public class OrderFacade(
         await prepService.Confirm(order);
 
         return order;
-    }
-
-
-    private async Task<Dictionary<string, ClientDto>> GetClients(IEnumerable<OrderInfoDto> orders)
-    {
-        var ids = orders.Select(o => o.Cliente!.Id).Cast<string>();
-        var data = await idService.Get(ids);
-
-        return data.ToDictionary(c => c.Id!);
     }
 
 }
