@@ -41,9 +41,14 @@ public class OrderFacade(
         return orders;
     }
 
-    public async Task<OrderInfoDto> Create(string cpf)
+    public async Task<OrderInfoDto> CreateById(string clientId)
     {
-        return await createUseCase.Create(cpf);
+        return await createUseCase.CreateById(clientId);
+    }
+
+    public async Task<OrderInfoDto> CreateByCpf(string cpf)
+    {
+        return await createUseCase.CreateByCpf(cpf);
     }
 
     public async Task<OrderInfoDto> AddItem(string? orderId, string? itemId)

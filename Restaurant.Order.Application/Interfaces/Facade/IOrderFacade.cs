@@ -7,7 +7,9 @@ public interface IOrderFacade
 
     Task<IEnumerable<OrderInfoDto>> GetWaiting();
 
-    Task<OrderInfoDto> Create(string cpf);
+    Task<OrderInfoDto> CreateById(string clientId);
+
+    Task<OrderInfoDto> CreateByCpf(string cpf);
 
     Task<OrderInfoDto> AddItem(string? orderId, string? itemId);
 

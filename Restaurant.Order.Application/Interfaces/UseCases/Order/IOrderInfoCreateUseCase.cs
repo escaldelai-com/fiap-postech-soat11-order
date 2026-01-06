@@ -5,6 +5,8 @@ namespace Restaurant.Order.Application.Interfaces.UseCases;
 public interface IOrderInfoCreateUseCase
 {
 
-    Task<OrderInfoDto> Create(string cpf);
+    Task<OrderInfoDto> CreateByCpf(string cpf);
+
+    Task<OrderInfoDto> CreateById(string? clientId);
 
 }
