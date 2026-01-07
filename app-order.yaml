@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-order
+  labels:
+    app: app-order
+spec:
+  template:
+    metadata:
+      labels:
+        app: app-order
+    spec:
+      containers:
+        - name: app-order
+          image: restaurant-order:1.0.0
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "80"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-id-credentials
+                  key: password
+            - name: ConnectionStrings__redis
+              value: "redis-id:6379,password=$(REDIS_PASSWORD)"
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-order-credentials
+                  key: username
+            - name: MONGODB_PASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-order-credentials
+                  key: password
+            - name: ConnectionStrings__MongoDb
+              value: "mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongo-order:27017"
+            - name: Security__PublicKey
+              valueFrom:
+                secretKeyRef:
+                  name: id-keys
+                  key: public
+            - name: ExternalServices__Identification
+              value: "http://app-id"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+  selector:
+    matchLabels:
+      app: app-order
+  replicas: 2

@@ -13,6 +13,30 @@
     <Project Path="Restaurant.Order.Application/Restaurant.Order.Application.csproj" Id="9f75e5fa-4284-47b2-a018-c07c9e11d397" />
     <Project Path="Restaurant.Order.Model/Restaurant.Order.Model.csproj" Id="d0567f36-4c55-402a-a832-753a9184c3ed" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/kubernetes/">
+    <File Path="init-k8s.cmd" />
+  </Folder>
+  <Folder Name="/Solution Items/kubernetes/app/">
+    <File Path="app-order-ingress.yaml" />
+    <File Path="app-order-service.yaml" />
+    <File Path="app-order.yaml" />
+    <File Path="Dockerfile" />
+  </Folder>
+  <Folder Name="/Solution Items/kubernetes/mongodb/">
+    <File Path="mongo-order-configmap.yaml" />
+    <File Path="mongo-order-secrets.yaml" />
+    <File Path="mongo-order-service.yaml" />
+    <File Path="mongo-order.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/kubernetes/redis/">
+    <File Path="redis-order-secrets.yaml" />
+    <File Path="redis-order-service.yaml" />
+    <File Path="redis-order.yaml" />
+  </Folder>
   <Folder Name="/test/">
     <Project Path="Restaurant.Order.Application.Test/Restaurant.Order.Application.Test.csproj" Id="214b030b-94b0-4c17-aaeb-21a6313d36f4" />
     <Project Path="Restaurant.Order.Model.Test/Restaurant.Order.Model.Test.csproj" Id="47aa239b-fc5e-4f5c-a0c5-dee014514787" />
