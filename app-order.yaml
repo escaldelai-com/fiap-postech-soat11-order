@@ -21,10 +21,10 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis-id-credentials
+                  name: redis-order-credentials
                   key: password
             - name: ConnectionStrings__redis
-              value: "redis-id:6379,password=$(REDIS_PASSWORD)"
+              value: "redis-order:6379,password=$(REDIS_PASSWORD)"
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -44,6 +44,10 @@ spec:
                   key: public
             - name: ExternalServices__Identification
               value: "http://app-id"
+            - name: ExternalServices__Payment
+              value: "http://app-pay"
+            - name: ExternalServices__Preparation
+              value: "http://app-prep"
           resources:
             requests:
               cpu: 200m
