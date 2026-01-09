@@ -1,0 +1,171 @@
+[{
+  "_id": {
+    "$oid": "69588177a59b21f898a794df"
+  },
+  "Nome": "Cheeseburger Clássico",
+  "Descricao": "Hambúrguer bovino com queijo, alface, tomate e molho especial.",
+  "Tipo": "Lanche",
+  "Preco": 24.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e0"
+  },
+  "Nome": "X-Salada",
+  "Descricao": "Hambúrguer com queijo, alface, tomate e maionese.",
+  "Tipo": "Lanche",
+  "Preco": 26.5
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e1"
+  },
+  "Nome": "Duplo Bacon",
+  "Descricao": "Dois hambúrgueres com queijo e tiras de bacon crocante.",
+  "Tipo": "Lanche",
+  "Preco": 32.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e2"
+  },
+  "Nome": "Chicken Crispy",
+  "Descricao": "Pão com filet de frango empanado crocante e molho.",
+  "Tipo": "Lanche",
+  "Preco": 27.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e3"
+  },
+  "Nome": "Veggie Burger",
+  "Descricao": "Hambúrguer vegetal com alface, tomate e molho especial.",
+  "Tipo": "Lanche",
+  "Preco": 29
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e4"
+  },
+  "Nome": "Batata Frita Média",
+  "Descricao": "Batatas cortadas em palito e fritas até dourar.",
+  "Tipo": "Acompanhamento",
+  "Preco": 12.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e5"
+  },
+  "Nome": "Onion Rings",
+  "Descricao": "Anéis de cebola empanados e crocantes.",
+  "Tipo": "Acompanhamento",
+  "Preco": 14.5
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e6"
+  },
+  "Nome": "Salada de Folhas",
+  "Descricao": "Mix de alface, rúcula e molho leve.",
+  "Tipo": "Acompanhamento",
+  "Preco": 10.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e7"
+  },
+  "Nome": "Palitos de Mandioca",
+  "Descricao": "Mandioca frita crocante.",
+  "Tipo": "Acompanhamento",
+  "Preco": 15
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e8"
+  },
+  "Nome": "Pão de Alho",
+  "Descricao": "Pãozinho crocante com manteiga de alho.",
+  "Tipo": "Acompanhamento",
+  "Preco": 9.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794e9"
+  },
+  "Nome": "Refrigerante Lata",
+  "Descricao": "Lata de 350ml (Coca-Cola, Guaraná ou similar).",
+  "Tipo": "Bebida",
+  "Preco": 8.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794ea"
+  },
+  "Nome": "Água Mineral 500ml",
+  "Descricao": "Água sem gás 500ml.",
+  "Tipo": "Bebida",
+  "Preco": 6.5
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794eb"
+  },
+  "Nome": "Suco Natural 300ml",
+  "Descricao": "Suco de laranja natural.",
+  "Tipo": "Bebida",
+  "Preco": 12.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794ec"
+  },
+  "Nome": "Chá Gelado",
+  "Descricao": "Chá gelado adoçado 400ml.",
+  "Tipo": "Bebida",
+  "Preco": 9.5
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794ed"
+  },
+  "Nome": "Milkshake de Baunilha",
+  "Descricao": "Milkshake cremoso de baunilha.",
+  "Tipo": "Bebida",
+  "Preco": 14.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794ee"
+  },
+  "Nome": "Sorvete Casquinha",
+  "Descricao": "Sorvete de baunilha na casquinha.",
+  "Tipo": "Sobremesa",
+  "Preco": 7.9
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794ef"
+  },
+  "Nome": "Brownie com Calda",
+  "Descricao": "Brownie quente com calda de chocolate.",
+  "Tipo": "Sobremesa",
+  "Preco": 15.5
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794f0"
+  },
+  "Nome": "Muffin de Chocolate",
+  "Descricao": "Muffin fofinho de chocolate.",
+  "Tipo": "Sobremesa",
+  "Preco": 12
+},
+{
+  "_id": {
+    "$oid": "69588177a59b21f898a794f1"
+  },
+  "Nome": "Torta de Maçã Individual",
+  "Descricao": "Torta de maçã com canela.",
+  "Tipo": "Sobremesa",
+  "Preco": 13.5
+}]
