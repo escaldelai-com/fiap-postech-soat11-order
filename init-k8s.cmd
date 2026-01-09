@@ -15,3 +15,4 @@ REM -- App
 kubectl apply -f app-order-service.yaml
 kubectl apply -f app-order-ingress.yaml
 kubectl apply -f app-order.yaml
+
