@@ -32,28 +32,28 @@ spec:
                   name: mongo-order-credentials
                   key: password
           volumeMounts:
-            - name: mongo-order-data
-              mountPath: /data/db
+            # - name: mongo-order-data
+            #   mountPath: /data/db
             - name: mongo-init-scripts
               mountPath: /docker-entrypoint-initdb.d
           resources:
             requests:
               cpu: 150m
-              memory: 256Mi
+              memory: 80Mi
             limits:
               cpu: 400m
-              memory: 512Mi
+              memory: 256Mi
       volumes:
         - name: mongo-init-scripts
           configMap:
             name: mongo-order-init-scripts
-  volumeClaimTemplates:
-    - metadata:
-        name: mongo-order-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        storageClassName: ebs-gp3
-        resources:
-          requests:
-            storage: 5Gi
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: mongo-order-data
+  #     spec:
+  #       accessModes:
+  #         - ReadWriteOnce
+  #       storageClassName: ebs-gp3
+  #       resources:
+  #         requests:
+  #           storage: 5Gi
