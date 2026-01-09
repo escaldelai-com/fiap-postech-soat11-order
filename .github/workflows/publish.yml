@@ -1,0 +1,89 @@
+# Workflow: Publish on Main (ajustado)
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  REGION: sa-east-1
+  ECR: 210450948776.dkr.ecr.sa-east-1.amazonaws.com
+  IMAGE: restaurante-order
+  TAG: latest
+  CLUSTER: restaurante-eks-cluster
+
+jobs:
+  build-and-publish-to-ecr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore Restaurant.Order.WebApi/Restaurant.Order.WebApi.csproj
+
+      - name: Publish Web API project
+        run: dotnet publish Restaurant.Order.WebApi/Restaurant.Order.WebApi.csproj --configuration Release --no-restore --output ./dist
+
+      - name: Configure AWS credentials for ECR (OIDC)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_GITHUB_ESCALDELAI_COM }} # role que tem permiss�o para ECR
+          aws-region: ${{ env.REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          region: ${{ env.REGION }}
+
+      - name: Build Docker image
+        run: docker build --tag ${{ env.ECR }}/${{ env.IMAGE }}:${{ env.TAG }} .
+
+      - name: Push image to ECR
+        run: docker push ${{ env.ECR }}/${{ env.IMAGE }}:${{ env.TAG }}
+
+  apply-kubernetes-manifests:
+    needs: build-and-publish-to-ecr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials for EKS (OIDC)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_GITHUB_ESCALDELAI_COM }}
+          aws-region: ${{ env.REGION }}
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Configure kubectl context
+        run: aws eks update-kubeconfig --region ${{ env.REGION }} --name ${{ env.CLUSTER }}
+
+      - name: Test kubectl context
+        run: aws sts get-caller-identity
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f ./redis-order-service.yaml
+          kubectl apply -f ./redis-order-secrets.yaml
+          kubectl apply -f ./redis-order.yaml
+          kubectl apply -f ./mongo-order-service.yaml
+          kubectl apply -f ./mongo-order-secrets.yaml
+          kubectl apply -f ./mongo-order-configmap.yaml
+          kubectl apply -f ./mongo-order.yaml
+          kubectl apply -f ./app-order-service.yaml
+          kubectl apply -f ./app-order-ingress.yaml
+          kubectl apply -f ./app-order.yaml
+
+      - name: Restart Kubernetes deployments
+        run: kubectl rollout restart deployment app-id
