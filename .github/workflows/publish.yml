@@ -86,4 +86,4 @@ jobs:
           kubectl apply -f ./app-order.yaml
 
       - name: Restart Kubernetes deployments
-        run: kubectl rollout restart deployment app-id
+        run: kubectl rollout restart deployment app-order
