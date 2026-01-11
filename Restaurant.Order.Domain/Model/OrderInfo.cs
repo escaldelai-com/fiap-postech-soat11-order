@@ -1,6 +1,6 @@
-﻿using Restaurant.Order.Model.Exceptions;
+﻿using Restaurant.Order.Domain.Exceptions;
 
-namespace Restaurant.Order.Model;
+namespace Restaurant.Order.Domain;
 
 public class OrderInfo
 {

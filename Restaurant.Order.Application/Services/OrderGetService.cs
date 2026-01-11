@@ -1,7 +1,7 @@
 ﻿using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Repository;
 using Restaurant.Order.Application.Interfaces.Services;
-using Restaurant.Order.Model;
+using Restaurant.Order.Domain;
 
 namespace Restaurant.Order.Application.Services;
 

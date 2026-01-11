@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\Restaurant.Order.Domain\Restaurant.Order.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Restaurant.Order.Model\Restaurant.Order.Model.csproj" />
+    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>

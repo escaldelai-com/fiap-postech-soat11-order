@@ -12,7 +12,7 @@ Esse microsserviço é responsável por gerenciar os pedidos, incluindo a criaç
 `dotnet build Restaurant.Order.WebApi/Restaurant.Order.WebApi.csproj`
 
 ### Testes
-`dotnet test Restaurant.Order.Model.Test/Restaurant.Order.Model.Test.csproj`
+`dotnet test Restaurant.Order.Domain.Test/Restaurant.Order.Domain.Test.csproj`
 
 `dotnet test Restaurant.Order.Application.Test/Restaurant.Order.Application.Test.csproj`
 

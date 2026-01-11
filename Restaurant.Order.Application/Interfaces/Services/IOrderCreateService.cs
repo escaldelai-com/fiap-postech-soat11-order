@@ -1,5 +1,5 @@
 ﻿using Restaurant.Order.Application.DTO;
-using Restaurant.Order.Model;
+using Restaurant.Order.Domain;
 
 namespace Restaurant.Order.Application.Interfaces.Services;
 

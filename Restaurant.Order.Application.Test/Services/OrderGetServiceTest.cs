@@ -3,7 +3,7 @@ using Moq;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Repository;
 using Restaurant.Order.Application.Services;
-using Restaurant.Order.Model;
+using Restaurant.Order.Domain;
 
 namespace Restaurant.Order.Application.Test;
 

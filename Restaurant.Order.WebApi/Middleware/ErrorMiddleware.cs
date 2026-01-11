@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Restaurant.Order.Model;
-using Restaurant.Order.Model.Exceptions;
+using Restaurant.Order.Domain;
+using Restaurant.Order.Domain.Exceptions;
 using System.Net;
 
 namespace Restaurant.Order.WebApi.Middleware;

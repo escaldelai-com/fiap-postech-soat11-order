@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Order.Model;
+﻿namespace Restaurant.Order.Domain;
 
 public class ValidationException(IEnumerable<string> errors) : Exception
 {

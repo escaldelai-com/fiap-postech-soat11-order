@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using Restaurant.Order.Model.Exceptions;
+using Restaurant.Order.Domain.Exceptions;
 
-namespace Restaurant.Order.Model.Test;
+namespace Restaurant.Order.Domain.Test;
 
 public class OrderInfoTest : TestBase
 {

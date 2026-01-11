@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Order.Model.Exceptions;
+﻿namespace Restaurant.Order.Domain.Exceptions;
 
 public class DuplicatedException : Exception
 {

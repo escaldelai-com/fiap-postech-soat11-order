@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Order.Application\Restaurant.Order.Application.csproj" />
     <ProjectReference Include="..\Restaurant.Order.Data\Restaurant.Order.Data.csproj" />
-    <ProjectReference Include="..\Restaurant.Order.Model\Restaurant.Order.Model.csproj" />
+    <ProjectReference Include="..\Restaurant.Order.Domain\Restaurant.Order.Domain.csproj" />
   </ItemGroup>
 
 </Project>

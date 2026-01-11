@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Facade;
-using Restaurant.Order.Model;
+using Restaurant.Order.Domain;
 using Restaurant.Order.WebApi.Security;
 
 namespace Restaurant.Order.WebApi.Controllers;

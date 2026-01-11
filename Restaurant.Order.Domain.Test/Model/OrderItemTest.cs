@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 
-namespace Restaurant.Order.Model.Test;
+namespace Restaurant.Order.Domain.Test;
 
 public class OrderItemTest : TestBase
 {
