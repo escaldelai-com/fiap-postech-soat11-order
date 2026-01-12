@@ -46,12 +46,6 @@ public partial class ErrorMiddleware(
         await context.Response.WriteAsJsonAsync(problem);
     }
 
-    [LoggerMessage(LogLevel.Error, "Unhandled exception")]
-    private static partial void LogUnhandledException(ILogger logger, Exception exception);
-
-    [LoggerMessage(LogLevel.Warning, "Handled exception mapped to {status}")]
-    private static partial void LogHandledException(ILogger logger, int status, Exception exception);
-
     private static (int, string, string?) SelectException(Exception exception)
     {
         return exception switch
@@ -65,6 +59,12 @@ public partial class ErrorMiddleware(
             _ => ((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao processar a solicitação, tente novamente mais tarde.", null)
         };
     }
+
+    [LoggerMessage(LogLevel.Error, "Unhandled exception")]
+    private static partial void LogUnhandledException(ILogger logger, Exception exception);
+
+    [LoggerMessage(LogLevel.Warning, "Handled exception mapped to {status}")]
+    private static partial void LogHandledException(ILogger logger, int status, Exception exception);
 
 }
 
