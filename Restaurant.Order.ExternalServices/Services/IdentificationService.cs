@@ -18,7 +18,7 @@ public class IdentificationService(
         ?? throw new ArgumentNullException("ExternalServices:Identification");
 
 
-    public async Task<ClientDto?> Get(string? cpf)
+    public async Task<ClientDto?> GetByCpf(string? cpf)
     {
         using var http = new HttpClient();
         var message = new HttpRequestMessage(HttpMethod.Get, $"{baseUrl}/client/cpf/{cpf}");
@@ -50,7 +50,7 @@ public class IdentificationService(
         return presenter.Deserialize<ClientDto>(content);
     }
 
-    public async Task<IEnumerable<ClientDto>> Get(IEnumerable<string> ids)
+    public async Task<IEnumerable<ClientDto>> GetByIds(IEnumerable<string> ids)
     {
         using var http = new HttpClient();
         var query = GetQueryIds(ids);
@@ -58,16 +58,15 @@ public class IdentificationService(
         var response = await http.SendAsync(message);
 
         response.EnsureSuccessStatusCode();
-        
+
         var content = await response.Content.ReadAsStringAsync();
-        
-        return presenter.Deserialize<IEnumerable<ClientDto>>(content) 
-            ?? Enumerable.Empty<ClientDto>();
+
+        return presenter.Deserialize<IEnumerable<ClientDto>>(content) ?? [];
     }
 
 
 
-    private string GetQueryIds(IEnumerable<string> ids)
+    private static string GetQueryIds(IEnumerable<string> ids)
     {
         var query = HttpUtility.ParseQueryString(string.Empty);
 
@@ -76,7 +75,7 @@ public class IdentificationService(
 
         var result = query.ToString();
 
-        return !string.IsNullOrEmpty(result) 
+        return !string.IsNullOrEmpty(result)
             ? $"?{result}"
             : string.Empty;
     }

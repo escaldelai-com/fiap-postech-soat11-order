@@ -18,6 +18,6 @@ public class OrderInfoData
 
     public string? Cliente { get; set; }
 
-    public List<OrderItemData> Items { get; set; } = new();
+    public List<OrderItemData> Items { get; set; } = [];
 
 }

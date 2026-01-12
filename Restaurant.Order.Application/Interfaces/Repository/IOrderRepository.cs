@@ -5,7 +5,7 @@ namespace Restaurant.Order.Application.Interfaces.Repository;
 public interface IOrderRepository
 {
 
-    Task<OrderInfoDto?> Get(string? id);
+    Task<OrderInfoDto?> GetById(string? id);
 
     Task<IEnumerable<OrderInfoDto>> GetListByStatuses(params string[] statuses);
 

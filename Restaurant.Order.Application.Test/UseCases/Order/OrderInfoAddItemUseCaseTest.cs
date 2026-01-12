@@ -18,8 +18,8 @@ public class OrderInfoAddItemUseCaseTest : TestBase
         // Arrange
         var (orderGet, itemGet, orderCreate, repo, useCase) = GetMocks();
         var (orderId, itemId) = (GetGuid(), GetGuid());
-        orderGet.Setup(x => x.Get(orderId)).ReturnsAsync(GetOrder(3, OrderStatus.Elaboration));
-        itemGet.Setup(x => x.Get(itemId)).ReturnsAsync(GetOrderItem);
+        orderGet.Setup(x => x.GetById(orderId)).ReturnsAsync(GetOrder(3, OrderStatus.Elaboration));
+        itemGet.Setup(x => x.GetById(itemId)).ReturnsAsync(GetOrderItem);
 
         // Act
         var result = await useCase.AddItem(orderId, itemId);
@@ -69,7 +69,7 @@ public class OrderInfoAddItemUseCaseTest : TestBase
         // Arrange
         var (orderGet, _, _, _, useCase) = GetMocks();
         var (orderId, itemId) = (GetGuid(), GetGuid());
-        orderGet.Setup(x => x.Get(orderId)).ReturnsAsync(GetOrder(3, OrderStatus.Canceled));
+        orderGet.Setup(x => x.GetById(orderId)).ReturnsAsync(GetOrder(3, OrderStatus.Canceled));
 
         // Act
         var act = () => useCase.AddItem(orderId, itemId);
@@ -80,7 +80,7 @@ public class OrderInfoAddItemUseCaseTest : TestBase
 
 
 
-    private (Mock<IOrderGetService>, Mock<IOrderItemGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoAddItemUseCase) GetMocks()
+    private static (Mock<IOrderGetService>, Mock<IOrderItemGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoAddItemUseCase) GetMocks()
     {
         var orderGet = new Mock<IOrderGetService>();
         var itemGet = new Mock<IOrderItemGetService>();

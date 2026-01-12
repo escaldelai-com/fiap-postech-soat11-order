@@ -11,10 +11,10 @@ public class ProductTest : TestBase
         // Arrange
         var testData = new
         {
-            Nome = faker.Commerce.ProductName(),
-            Descricao = faker.Commerce.ProductDescription(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Descricao = Faker.Commerce.ProductDescription(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
 
         // Act
@@ -38,9 +38,9 @@ public class ProductTest : TestBase
         // Act
         var act = () => new Product(
             nome: value!,
-            descricao: faker.Commerce.ProductDescription(),
-            tipo: faker.Commerce.Categories(1).First(),
-            preco: faker.Random.Decimal(10, 100)
+            descricao: Faker.Commerce.ProductDescription(),
+            tipo: Faker.Commerce.Categories(1).First(),
+            preco: Faker.Random.Decimal(10, 100)
         );
 
         // Assert
@@ -55,10 +55,10 @@ public class ProductTest : TestBase
     {
         // Act
         var act = () => new Product(
-            nome: faker.Commerce.ProductName(),
+            nome: Faker.Commerce.ProductName(),
             descricao: value!,
-            tipo: faker.Commerce.Categories(1).First(),
-            preco: faker.Random.Decimal(10, 100)
+            tipo: Faker.Commerce.Categories(1).First(),
+            preco: Faker.Random.Decimal(10, 100)
         );
 
         // Assert
@@ -73,10 +73,10 @@ public class ProductTest : TestBase
     {
         // Act
         var act = () => new Product(
-            nome: faker.Commerce.ProductName(),
-            descricao: faker.Commerce.ProductDescription(),
+            nome: Faker.Commerce.ProductName(),
+            descricao: Faker.Commerce.ProductDescription(),
             tipo: value!,
-            preco: faker.Random.Decimal(10, 100)
+            preco: Faker.Random.Decimal(10, 100)
         );
 
         // Assert
@@ -90,9 +90,9 @@ public class ProductTest : TestBase
     {
         // Act
         var act = () => new Product(
-            nome: faker.Commerce.ProductName(),
-            descricao: faker.Commerce.ProductDescription(),
-            tipo: faker.Commerce.Categories(1).First(),
+            nome: Faker.Commerce.ProductName(),
+            descricao: Faker.Commerce.ProductDescription(),
+            tipo: Faker.Commerce.Categories(1).First(),
             preco: value
         );
 

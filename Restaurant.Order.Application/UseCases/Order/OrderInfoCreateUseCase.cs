@@ -18,12 +18,9 @@ public class OrderInfoCreateUseCase(
             .IsNotNullOrWhiteSpace(cpf)
             .Validate();
 
-        var client = await idService.Get(cpf);
-
-        if (client == null)
-            throw new NotFoundException(cpf);
-
-        var number = await seq.Get("order");
+        var client = await idService.GetByCpf(cpf)
+            ?? throw new NotFoundException(cpf);
+        var number = await seq.GetByPrefix("order");
         var model = new OrderInfo(
             DateTime.Now, number, client.Id!, OrderStatus.Elaboration);
 
@@ -46,15 +43,12 @@ public class OrderInfoCreateUseCase(
             .IsNotNullOrWhiteSpace(clientId)
             .Validate();
 
-        var number = await seq.Get("order");
+        var number = await seq.GetByPrefix("order");
         var model = new OrderInfo(
             DateTime.Now, number, clientId!, OrderStatus.Elaboration);
 
-        var client = await idService.GetById(clientId);
-
-        if (client == null)
-            throw new NotFoundException(clientId!);
-
+        var client = await idService.GetById(clientId)
+            ?? throw new NotFoundException(clientId!);
         var data = new OrderInfoDto
         {
             Cliente = client,

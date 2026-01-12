@@ -48,9 +48,10 @@ public static class Configuration
 
     private static RsaSecurityKey GetKey(IConfiguration config)
     {
+        var configname = "Security:PublicKey";
         var rsa = RSA.Create();
-        var key = Convert.FromBase64String(config["Security:PublicKey"]
-            ?? throw new ArgumentNullException("Security:PublicKey"));
+        var key = Convert.FromBase64String(config[configname]
+            ?? throw new ArgumentNullException(configname));
 
         rsa.ImportRSAPublicKey(key, out _);
 

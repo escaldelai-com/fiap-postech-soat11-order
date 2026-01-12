@@ -20,14 +20,14 @@ public class OrderInfoAddItemUseCase(
             .IsNotNullOrWhiteSpace(itemId)
             .Validate();
 
-        var order = await orderGet.Get(orderId!);
+        var order = await orderGet.GetById(orderId!);
 
         if (order.Status != OrderStatus.Elaboration)
             throw new OrderStatusException(order.Status!, "add item");
 
-        order.Items.Add(await itemGet.Get(itemId!));
+        order.Items.Add(await itemGet.GetById(itemId!));
 
-        var model = orderCreate.Create(order);
+        orderCreate.Create(order);
 
         await repo.Update(order);
 

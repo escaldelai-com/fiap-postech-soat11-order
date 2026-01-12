@@ -18,7 +18,7 @@ public class OrderInfoCancelUseCase(
             .IsNotNullOrWhiteSpace(orderId)
             .Validate();
 
-        var order = await orderGet.Get(orderId!);
+        var order = await orderGet.GetById(orderId!);
         var model = orderCreate.Create(order);
 
         model.Cancel();

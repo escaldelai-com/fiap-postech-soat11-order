@@ -7,15 +7,14 @@ public class DatePresenter(
     IConfiguration configuration) : IDatePresenter
 {
 
-    private readonly TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(configuration["TimeZone"] 
+    private readonly TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(configuration["TimeZone"]
         ?? throw new ArgumentNullException("TimeZone configuration is missing"));
 
 
-    public DateTime? ToTimeZone(DateTime? utcDateTime)
+    public DateTime? ToTimeZone(DateTime? dateTime)
     {
-        if (utcDateTime == null)
-            return null;
-
-        return TimeZoneInfo.ConvertTimeFromUtc(utcDateTime.Value, timeZone);
+        return dateTime != null
+            ? TimeZoneInfo.ConvertTimeFromUtc(dateTime.Value, timeZone)
+            : null;
     }
 }

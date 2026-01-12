@@ -11,9 +11,9 @@ public class OrderItemTest : TestBase
         // Arrange
         var item = new
         {
-            Nome = faker.Commerce.ProductName(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
 
         // Act
@@ -36,8 +36,8 @@ public class OrderItemTest : TestBase
         // Act
         var act = () => new OrderItem(
             value!,
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         );
 
         // Assert
@@ -52,9 +52,9 @@ public class OrderItemTest : TestBase
     {
         // Act
         var act = () => new OrderItem(
-            faker.Commerce.ProductName(),
+            Faker.Commerce.ProductName(),
             value!,
-            faker.Random.Decimal(10, 100)
+            Faker.Random.Decimal(10, 100)
         );
 
         // Assert
@@ -68,8 +68,8 @@ public class OrderItemTest : TestBase
     {
         // Act
         var act = () => new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
             value
         );
 
@@ -83,9 +83,9 @@ public class OrderItemTest : TestBase
         // Arrange
         var item = new
         {
-            Nome = faker.Commerce.ProductName(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
         var orderItem1 = new OrderItem(item.Nome, item.Tipo, item.Preco);
         var orderItem2 = new OrderItem(item.Nome, item.Tipo, item.Preco);

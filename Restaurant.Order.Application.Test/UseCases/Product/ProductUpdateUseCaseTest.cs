@@ -18,12 +18,12 @@ public class ProductUpdateUseCaseTest : TestBase
         var product = new ProductDto
         {
             Id = GetGuid(),
-            Nome = faker.Commerce.ProductName(),
-            Descricao = faker.Commerce.ProductDescription(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Descricao = Faker.Commerce.ProductDescription(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
-        repo.Setup(r => r.Get(product.Id)).ReturnsAsync(product);
+        repo.Setup(r => r.GetById(product.Id)).ReturnsAsync(product);
         repo.Setup(r => r.Update(product)).ReturnsAsync(product.Id!);
 
         // Act
@@ -57,12 +57,12 @@ public class ProductUpdateUseCaseTest : TestBase
         var product = new ProductDto
         {
             Id = GetGuid(),
-            Nome = faker.Commerce.ProductName(),
-            Descricao = faker.Commerce.ProductDescription(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Descricao = Faker.Commerce.ProductDescription(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
-        repo.Setup(r => r.Get(product.Id)).ReturnsAsync(() => null);
+        repo.Setup(r => r.GetById(product.Id)).ReturnsAsync(() => null);
 
         // Act
         var act = () => useCase.Update(product!);

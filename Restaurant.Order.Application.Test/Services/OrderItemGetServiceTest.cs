@@ -18,10 +18,10 @@ public class OrderItemGetServiceTest : TestBase
         var service = new OrderItemGetService(repo.Object);
         var itemId = GetGuid();
         var item = new ProductDto { Id = itemId };
-        repo.Setup(x => x.Get(itemId)).ReturnsAsync(item);
+        repo.Setup(x => x.GetById(itemId)).ReturnsAsync(item);
 
         // Act
-        var result = await service.Get(itemId);
+        var result = await service.GetById(itemId);
 
         // Assert
         result.Should().NotBeNull();
@@ -34,10 +34,10 @@ public class OrderItemGetServiceTest : TestBase
         var repo = new Mock<IProductRepository>();
         var service = new OrderItemGetService(repo.Object);
         var itemId = GetGuid();
-        repo.Setup(x => x.Get(itemId)).ReturnsAsync(() => null);
+        repo.Setup(x => x.GetById(itemId)).ReturnsAsync(() => null);
 
         // Act
-        var act = () => service.Get(itemId);
+        var act = () => service.GetById(itemId);
 
         // Assert
         await act.Should().ThrowAsync<NotFoundException>();

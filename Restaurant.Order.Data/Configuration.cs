@@ -47,13 +47,13 @@ public static class Configuration
     {
         services.AddSingleton(provider =>
         {
+            var configName = "redis";
             var configuration = provider.GetRequiredService<IConfiguration>();
-            var connectionString = configuration.GetConnectionString("redis");
+            var connectionString = configuration.GetConnectionString(configName);
 
-            if (string.IsNullOrEmpty(connectionString))
-                throw new ArgumentNullException("redis");
-
-            return ConnectionMultiplexer.Connect(connectionString);
+            return !string.IsNullOrEmpty(connectionString)
+                ? ConnectionMultiplexer.Connect(connectionString)
+                : throw new ArgumentNullException(configName);
         });
         services.AddSingleton(provider =>
         {

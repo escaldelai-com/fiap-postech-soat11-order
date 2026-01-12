@@ -23,7 +23,7 @@ public class OrderCreateService : IOrderCreateService
 
 
 
-    private OrderItem Create(OrderItemDto itemDto)
+    private static OrderItem Create(OrderItemDto itemDto)
     {
         return new OrderItem(
             itemDto.Nome!,

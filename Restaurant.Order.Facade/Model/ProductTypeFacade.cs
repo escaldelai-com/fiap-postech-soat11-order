@@ -11,11 +11,11 @@ public class ProductTypeFacade(
     {
         var data = await repo.GetList();
 
-        return data
-            .Select(x => x.Nome)
-            .Where(x => !string.IsNullOrEmpty(x))
-            .Cast<string>()
-            .ToList();
+        return [..
+            data.Select(x => x.Nome)
+                .Where(x => !string.IsNullOrEmpty(x))
+                .Cast<string>()
+        ];
     }
 
 }

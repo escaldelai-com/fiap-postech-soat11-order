@@ -8,18 +8,16 @@ public class JsonPresenter : IJsonPresenter
 
     public T? Deserialize<T>(string? json)
     {
-        if (string.IsNullOrWhiteSpace(json))
-            return default;
-
-        return JsonConvert.DeserializeObject<T>(json);
+        return string.IsNullOrWhiteSpace(json)
+            ? default
+            : JsonConvert.DeserializeObject<T>(json);
     }
 
     public string? Serialize(object? obj)
     {
-        if (obj == null)
-            return null;
-
-        return JsonConvert.SerializeObject(obj);
+        return obj == null
+            ? null
+            : JsonConvert.SerializeObject(obj);
     }
 
 }

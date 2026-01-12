@@ -4,9 +4,10 @@ namespace Restaurant.Order.Domain.Test;
 
 public abstract class TestBase
 {
+    protected Faker Faker { get; } = new("pt_BR");
 
-    protected Faker faker = new("pt_BR");
-
-    protected string GetGuid() => Guid.NewGuid().ToString("n");
-
+    protected static string GetGuid()
+    {
+        return Guid.NewGuid().ToString("n");
+    }
 }

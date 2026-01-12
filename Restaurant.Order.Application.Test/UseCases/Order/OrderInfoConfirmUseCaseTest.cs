@@ -17,7 +17,7 @@ public class OrderInfoConfirmUseCaseTest : TestBase
         // Arrange
         var (orderGet, orderCreate, _, useCase) = GetMocks();
         var order = GetOrder(3, OrderStatus.Elaboration);
-        orderGet.Setup(x => x.Get(order.Id!)).ReturnsAsync(order);
+        orderGet.Setup(x => x.GetById(order.Id!)).ReturnsAsync(order);
         orderCreate.Setup(x => x.Create(order)).Returns(GetOrder(order));
 
         // Act
@@ -45,7 +45,7 @@ public class OrderInfoConfirmUseCaseTest : TestBase
 
 
 
-    private (Mock<IOrderGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoConfirmUseCase) GetMocks()
+    private static (Mock<IOrderGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoConfirmUseCase) GetMocks()
     {
         var orderGet = new Mock<IOrderGetService>();
         var orderCreate = new Mock<IOrderCreateService>();

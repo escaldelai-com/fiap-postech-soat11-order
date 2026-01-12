@@ -9,7 +9,7 @@ public static class ConfigurationExtensions
     public static IServiceCollection AddScoped(this IServiceCollection services, Assembly assembly, string serviceSuffix)
     {
         var types = assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix));
+            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix, StringComparison.Ordinal));
 
         foreach (var implementationType in types)
         {
@@ -25,7 +25,7 @@ public static class ConfigurationExtensions
     public static IServiceCollection AddTransient(this IServiceCollection services, Assembly assembly, string serviceSuffix)
     {
         var types = assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix));
+            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix, StringComparison.Ordinal));
 
         foreach (var implementationType in types)
         {
@@ -41,7 +41,7 @@ public static class ConfigurationExtensions
     public static IServiceCollection AddSingleton(this IServiceCollection services, Assembly assembly, string serviceSuffix)
     {
         var types = assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix));
+            .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(serviceSuffix, StringComparison.Ordinal));
 
         foreach (var implementationType in types)
         {

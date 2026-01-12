@@ -5,7 +5,7 @@ namespace Restaurant.Order.Application.Interfaces.Facade;
 public interface IProductFacade
 {
 
-    Task<ProductDto?> Get(string? id);
+    Task<ProductDto?> GetById(string? id);
 
     Task<IEnumerable<ProductDto>> GetByType(string type);
 

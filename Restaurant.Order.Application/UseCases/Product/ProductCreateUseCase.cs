@@ -16,9 +16,9 @@ public class ProductCreateUseCase(
             .Validate();
 
         _ = new Product(
-            product.Nome!, 
-            product.Descricao!, 
-            product.Tipo!, 
+            product.Nome!,
+            product.Descricao!,
+            product.Tipo!,
             product.Preco!);
 
         return await repo.Create(product);

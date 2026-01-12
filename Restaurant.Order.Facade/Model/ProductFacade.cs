@@ -12,9 +12,9 @@ public class ProductFacade(
     IProductDeleteUseCase deleteUseCase) : IProductFacade
 {
 
-    public Task<ProductDto?> Get(string? id)
+    public Task<ProductDto?> GetById(string? id)
     {
-        return repo.Get(id);
+        return repo.GetById(id);
     }
 
     public Task<IEnumerable<ProductDto>> GetByType(string type)

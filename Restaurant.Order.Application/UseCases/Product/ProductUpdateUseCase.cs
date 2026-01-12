@@ -21,12 +21,11 @@ public class ProductUpdateUseCase(
             product.Tipo!,
             product.Preco!);
 
-        var exist = await repo.Get(product.Id);
+        var exist = await repo.GetById(product.Id);
 
-        if (exist == null)
-            throw new NotFoundException(product.Id ?? "product");
-
-        return await repo.Update(product);
+        return exist == null
+            ? throw new NotFoundException(product.Id ?? "product")
+            : await repo.Update(product);
     }
 
 }

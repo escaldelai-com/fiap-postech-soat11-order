@@ -16,7 +16,7 @@ public class OrderInfoCancelUseCaseTest : TestBase
         // Arrange
         var (orderGet, orderCreate, _, useCase) = GetMocks();
         var order = GetOrder(3, OrderStatus.WaitingPayment);
-        orderGet.Setup(x => x.Get(order.Id!)).ReturnsAsync(order);
+        orderGet.Setup(x => x.GetById(order.Id!)).ReturnsAsync(order);
         orderCreate.Setup(x => x.Create(order)).Returns(GetOrder(order));
 
         // Act
@@ -44,7 +44,7 @@ public class OrderInfoCancelUseCaseTest : TestBase
 
 
 
-    private (Mock<IOrderGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoCancelUseCase) GetMocks()
+    private static (Mock<IOrderGetService>, Mock<IOrderCreateService>, Mock<IOrderRepository>, OrderInfoCancelUseCase) GetMocks()
     {
         var orderGet = new Mock<IOrderGetService>();
         var orderCreate = new Mock<IOrderCreateService>();

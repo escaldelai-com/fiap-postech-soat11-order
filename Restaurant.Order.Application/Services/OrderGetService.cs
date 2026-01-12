@@ -9,14 +9,11 @@ public class OrderGetService(
     IOrderRepository repo) : IOrderGetService
 {
 
-    public async Task<OrderInfoDto> Get(string orderId)
+    public async Task<OrderInfoDto> GetById(string orderId)
     {
-        var order = await repo.Get(orderId);
+        var order = await repo.GetById(orderId);
 
-        if (order == null)
-            throw new NotFoundException(orderId);
-
-        return order;
+        return order ?? throw new NotFoundException(orderId);
     }
 
 }

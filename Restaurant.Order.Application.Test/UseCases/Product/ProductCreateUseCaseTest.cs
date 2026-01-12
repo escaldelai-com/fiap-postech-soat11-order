@@ -19,13 +19,13 @@ public class ProductCreateUseCaseTest : TestBase
         var product = new ProductDto
         {
             Id = GetGuid(),
-            Nome = faker.Commerce.ProductName(),
-            Descricao = faker.Commerce.ProductDescription(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Descricao = Faker.Commerce.ProductDescription(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
         repo.Setup(r => r.Create(product)).ReturnsAsync(product.Id!);
-        
+
         // Act
         var result = await useCase.Create(product);
 

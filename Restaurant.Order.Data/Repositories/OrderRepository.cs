@@ -29,7 +29,7 @@ public class OrderRepository(
         return mapper.Map<IEnumerable<OrderInfoDto>>(entities);
     }
 
-    public async Task<OrderInfoDto?> Get(string? id)
+    public async Task<OrderInfoDto?> GetById(string? id)
     {
         var entity = await collection
             .Find(x => x.Id == id)
@@ -57,7 +57,7 @@ public class OrderRepository(
         var entity = mapper.Map<OrderInfoData>(data);
 
         await collection.ReplaceOneAsync(
-            filter: x => x.Id == entity.Id, 
+            filter: x => x.Id == entity.Id,
             replacement: entity);
     }
 

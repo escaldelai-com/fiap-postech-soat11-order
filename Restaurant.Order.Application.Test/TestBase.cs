@@ -7,37 +7,38 @@ namespace Restaurant.Order.Application.Test;
 
 public abstract class TestBase
 {
+    protected Faker Faker { get; } = new("pt_BR");
 
-    protected Faker faker = new("pt_BR");
-
-    protected string GetGuid() => Guid.NewGuid().ToString("n");
-
+    protected static string GetGuid()
+    {
+        return Guid.NewGuid().ToString("n");
+    }
 
     protected OrderInfoDto GetOrder(int items = 3, string? status = null)
     {
         return new OrderInfoDto
         {
             Id = GetGuid(),
-            Data = faker.Date.Past(),
-            Numero = faker.Random.Int(1, 9999),
-            Cliente = new ClientDto 
-            { 
+            Data = Faker.Date.Past(),
+            Numero = Faker.Random.Int(1, 9999),
+            Cliente = new ClientDto
+            {
                 Id = GetGuid(),
-                Nome = faker.Name.FullName(),
-                Email = faker.Internet.Email(),
-                CPF = faker.Person.Cpf()
+                Nome = Faker.Name.FullName(),
+                Email = Faker.Internet.Email(),
+                CPF = Faker.Person.Cpf()
             },
-            Status = status ?? faker.Random.Word(),
-            Items = faker.Make(items, GetOrderItem).ToList()
+            Status = status ?? Faker.Random.Word(),
+            Items = [.. Faker.Make(items, GetOrderItem)]
         };
     }
 
-    protected OrderInfo GetOrder(OrderInfoDto order)
+    protected static OrderInfo GetOrder(OrderInfoDto order)
     {
         var model = new OrderInfo(
-            order.Data!.Value, 
-            order.Numero!.Value, 
-            order.Cliente!.Id!, 
+            order.Data!.Value,
+            order.Numero!.Value,
+            order.Cliente!.Id!,
             order.Status!);
 
         foreach (var item in order.Items)
@@ -56,9 +57,9 @@ public abstract class TestBase
         return new OrderItemDto
         {
             Id = GetGuid(),
-            Nome = faker.Commerce.ProductName(),
-            Tipo = faker.Commerce.Categories(1).First(),
-            Preco = faker.Random.Decimal(10, 100)
+            Nome = Faker.Commerce.ProductName(),
+            Tipo = Faker.Commerce.Categories(1).First(),
+            Preco = Faker.Random.Decimal(10, 100)
         };
     }
 

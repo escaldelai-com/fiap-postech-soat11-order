@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Restaurant.Order.Application.Interfaces.WebApi;
+﻿using Restaurant.Order.Application.Interfaces.WebApi;
 
 namespace Restaurant.Order.WebApi.Services;
 
@@ -15,14 +14,12 @@ public class SecurityService(
 
     private string GetToken()
     {
-        var authorizationHeader = http.HttpContext?
-            .Request.Headers["Authorization"]
-            .ToString();
+        var authorizationHeader =
+            $"{http.HttpContext?.Request.Headers.Authorization}";
 
-        if (string.IsNullOrWhiteSpace(authorizationHeader))
-            return string.Empty;
-
-        return authorizationHeader.StartsWith(bearerPrefix, StringComparison.OrdinalIgnoreCase)
+        return string.IsNullOrWhiteSpace(authorizationHeader)
+            ? string.Empty
+            : authorizationHeader.StartsWith(bearerPrefix, StringComparison.OrdinalIgnoreCase)
             ? authorizationHeader[bearerPrefix.Length..].Trim()
             : authorizationHeader.Trim();
     }

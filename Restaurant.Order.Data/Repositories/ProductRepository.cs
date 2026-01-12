@@ -3,20 +3,25 @@ using MongoDB.Driver;
 using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.Repository;
 using Restaurant.Order.Data.Model;
-using SharpCompress.Common;
 
 namespace Restaurant.Order.Data.Repositories;
+
+
+// Cultureinfo não fará diferença para o driver do MongoDB podendo inclusive causar erros na execução
+#pragma warning disable CA1304
+#pragma warning disable CA1862
+#pragma warning disable CA1311 
 
 public class ProductRepository(
     IMapper mapper,
     IMongoDatabase context) : IProductRepository
 {
 
-    private readonly IMongoCollection<ProductData> collection = 
+    private readonly IMongoCollection<ProductData> collection =
         context.GetCollection<ProductData>("product");
 
 
-    public async Task<ProductDto?> Get(string? id)
+    public async Task<ProductDto?> GetById(string? id)
     {
         var data = await collection
             .Find(x => x.Id == id)
@@ -62,3 +67,7 @@ public class ProductRepository(
     }
 
 }
+
+#pragma warning restore CA1311
+#pragma warning restore CA1862
+#pragma warning restore CA1304

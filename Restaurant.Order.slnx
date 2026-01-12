@@ -14,6 +14,7 @@
     <Project Path="Restaurant.Order.Domain/Restaurant.Order.Domain.csproj" Id="d0567f36-4c55-402a-a832-753a9184c3ed" />
   </Folder>
   <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
     <File Path="LICENSE" />
     <File Path="README.md" />
   </Folder>

@@ -17,7 +17,7 @@ public class ProductDeleteUseCaseTest : TestBase
         var repo = new Mock<IProductRepository>();
         var useCase = new ProductDeleteUseCase(repo.Object);
         var id = GetGuid();
-        repo.Setup(x => x.Get(id)).ReturnsAsync(new ProductDto());
+        repo.Setup(x => x.GetById(id)).ReturnsAsync(new ProductDto());
 
         // Act
         var act = () => useCase.Delete(id);
@@ -50,7 +50,7 @@ public class ProductDeleteUseCaseTest : TestBase
         var repo = new Mock<IProductRepository>();
         var useCase = new ProductDeleteUseCase(repo.Object);
         var id = GetGuid();
-        repo.Setup(x => x.Get(id)).ReturnsAsync(() => null);
+        repo.Setup(x => x.GetById(id)).ReturnsAsync(() => null);
 
         // Act
         var act = () => useCase.Delete(id);

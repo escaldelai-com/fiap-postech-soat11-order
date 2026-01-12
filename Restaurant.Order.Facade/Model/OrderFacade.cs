@@ -1,7 +1,6 @@
 ﻿using Restaurant.Order.Application.DTO;
 using Restaurant.Order.Application.Interfaces.ExternalServices;
 using Restaurant.Order.Application.Interfaces.Facade;
-using Restaurant.Order.Application.Interfaces.Repository;
 using Restaurant.Order.Application.Interfaces.UseCases;
 
 namespace Restaurant.Order.Facade;
@@ -30,7 +29,7 @@ public class OrderFacade(
     public async Task<OrderInfoDto> AddItem(string? orderId, string? itemId)
     {
         var order = await addItemUseCase.AddItem(orderId, itemId);
-        
+
         order.Cliente = await idService.GetById(order.Cliente!.Id!);
 
         return order;

@@ -3,14 +3,16 @@
 public class Validator
 {
 
-    private readonly List<string> errors = new();
+    private readonly List<string> errors = [];
 
 
     private Validator() { }
 
 
-    public static Validator Create() => new Validator();
-
+    public static Validator Create()
+    {
+        return new Validator();
+    }
 
     public Validator Test(bool condition, string errorMessage)
     {

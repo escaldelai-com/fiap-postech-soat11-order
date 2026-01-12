@@ -28,7 +28,7 @@ public class OrderInfo
         Numero = numero;
         Cliente = cliente;
         Status = status;
-        Items = Array.Empty<OrderItem>();
+        Items = [];
     }
 
 
@@ -42,9 +42,7 @@ public class OrderInfo
         if (IsDuplicated(item))
             throw new DuplicatedException();
 
-        Items = Items
-            .Concat([item])
-            .ToArray();
+        Items = [.. Items, item];
     }
 
     public void Confirm()
@@ -52,7 +50,7 @@ public class OrderInfo
         if (Status != OrderStatus.Elaboration)
             throw new OrderStatusException(Status, "confirm");
 
-        if (!Items.Any())
+        if (Items.Length == 0)
             throw new InvalidOrderException();
 
         Status = OrderStatus.WaitingPayment;
@@ -63,7 +61,7 @@ public class OrderInfo
         if (Status != OrderStatus.WaitingPayment)
             throw new OrderStatusException(Status, "confirm pay");
 
-        if (!Items.Any())
+        if (Items.Length == 0)
             throw new InvalidOrderException();
 
         Status = OrderStatus.Paid;

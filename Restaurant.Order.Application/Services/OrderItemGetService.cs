@@ -9,20 +9,19 @@ public class OrderItemGetService(
     IProductRepository repo) : IOrderItemGetService
 {
 
-    public async Task<OrderItemDto> Get(string itemId)
+    public async Task<OrderItemDto> GetById(string itemId)
     {
-        var item = await repo.Get(itemId);
+        var item = await repo.GetById(itemId);
 
-        if (item == null)
-            throw new NotFoundException(itemId);
-
-        return new OrderItemDto
-        {
-            Id = item.Id,
-            Nome = item.Nome,
-            Tipo = item.Tipo,
-            Preco = item.Preco
-        };
+        return item == null
+            ? throw new NotFoundException(itemId)
+            : new OrderItemDto
+            {
+                Id = item.Id,
+                Nome = item.Nome,
+                Tipo = item.Tipo,
+                Preco = item.Preco
+            };
     }
 
 

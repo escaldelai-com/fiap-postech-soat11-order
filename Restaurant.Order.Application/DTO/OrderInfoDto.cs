@@ -13,6 +13,6 @@ public class OrderInfoDto
 
     public ClientDto? Cliente { get; set; }
 
-    public List<OrderItemDto> Items { get; set; } = new();
+    public List<OrderItemDto> Items { get; set; } = [];
 
 }

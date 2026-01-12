@@ -12,10 +12,10 @@ public class OrderInfoTest : TestBase
         // Arrange
         var data = new
         {
-            Data = faker.Date.Past(),
-            Numero = faker.Random.Int(1, 9999),
+            Data = Faker.Date.Past(),
+            Numero = Faker.Random.Int(1, 9999),
             Cliente = GetGuid(),
-            Status = faker.Random.Word(),
+            Status = Faker.Random.Word(),
             Items = Array.Empty<object>()
         };
 
@@ -36,10 +36,10 @@ public class OrderInfoTest : TestBase
     {
         // Act
         var act = () => new OrderInfo(
-            faker.Date.Future(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Future(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
-            faker.Random.Word()
+            Faker.Random.Word()
         );
 
         // Assert
@@ -53,10 +53,10 @@ public class OrderInfoTest : TestBase
     {
         // Act
         var act = () => new OrderInfo(
-            faker.Date.Future(),
+            Faker.Date.Future(),
             value,
             GetGuid(),
-            faker.Random.Word()
+            Faker.Random.Word()
         );
 
         // Assert
@@ -71,10 +71,10 @@ public class OrderInfoTest : TestBase
     {
         // Act
         var act = () => new OrderInfo(
-            faker.Date.Future(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Future(),
+            Faker.Random.Int(1, 9999),
             value!,
-            faker.Random.Word()
+            Faker.Random.Word()
         );
 
         // Assert
@@ -89,8 +89,8 @@ public class OrderInfoTest : TestBase
     {
         // Act
         var act = () => new OrderInfo(
-            faker.Date.Future(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Future(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             value!
         );
@@ -104,15 +104,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
-            faker.Random.Word()
+            Faker.Random.Word()
         );
         var item = new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         );
 
         // Act
@@ -129,10 +129,10 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
-            faker.Random.Word()
+            Faker.Random.Word()
         );
 
         // Act
@@ -147,15 +147,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
-            faker.Random.Word()
+            Faker.Random.Word()
         );
         var item = new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         );
         order.AddItem(item);
 
@@ -171,15 +171,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Elaboration
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act
@@ -194,15 +194,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Canceled
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act
@@ -217,8 +217,8 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Elaboration
         );
@@ -235,15 +235,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Elaboration
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act
@@ -258,15 +258,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Canceled
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act
@@ -281,15 +281,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.WaitingPayment
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act
@@ -304,15 +304,15 @@ public class OrderInfoTest : TestBase
     {
         // Arrange
         var order = new OrderInfo(
-            faker.Date.Past(),
-            faker.Random.Int(1, 9999),
+            Faker.Date.Past(),
+            Faker.Random.Int(1, 9999),
             GetGuid(),
             OrderStatus.Canceled
         );
         order.AddItem(new OrderItem(
-            faker.Commerce.ProductName(),
-            faker.Commerce.Categories(1).First(),
-            faker.Random.Decimal(10, 100)
+            Faker.Commerce.ProductName(),
+            Faker.Commerce.Categories(1).First(),
+            Faker.Random.Decimal(10, 100)
         ));
 
         // Act

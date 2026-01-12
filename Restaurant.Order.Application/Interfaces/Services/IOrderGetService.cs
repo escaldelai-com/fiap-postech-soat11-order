@@ -5,6 +5,6 @@ namespace Restaurant.Order.Application.Interfaces.Services;
 public interface IOrderGetService
 {
 
-    Task<OrderInfoDto> Get(string orderId);
+    Task<OrderInfoDto> GetById(string orderId);
 
 }

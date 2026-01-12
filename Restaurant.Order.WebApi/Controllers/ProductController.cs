@@ -17,7 +17,7 @@ public class ProductController(
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDto))]
     public async Task<IActionResult> Get(string? id)
     {
-        var data = await facade.Get(id);
+        var data = await facade.GetById(id);
 
         return data != null
             ? Ok(data)

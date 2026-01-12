@@ -3,6 +3,6 @@
 public interface ISequenceRepository
 {
 
-    Task<int> Get(string prefix);
+    Task<int> GetByPrefix(string prefix);
 
 }

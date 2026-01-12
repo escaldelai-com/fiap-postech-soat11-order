@@ -15,9 +15,9 @@ public class OrderController(
     [Authorize(Claims.Order.Create)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderInfoDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Create([FromBody]ClientDto client)
+    public async Task<IActionResult> Create([FromBody] ClientDto client)
     {
-        var result = !string.IsNullOrWhiteSpace(client.Id) 
+        var result = !string.IsNullOrWhiteSpace(client.Id)
             ? await facade.CreateById(client.Id)
             : await facade.CreateByCpf(client.CPF!);
 

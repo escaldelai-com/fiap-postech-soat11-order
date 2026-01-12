@@ -14,9 +14,7 @@ public class ProductDeleteUseCase(
             .IsNotNullOrWhiteSpace(id)
             .Validate();
 
-        var exists = await repo.Get(id);
-
-        if (exists == null)
+        if (await repo.GetById(id) == null)
             throw new NotFoundException(id);
 
         await repo.Delete(id);

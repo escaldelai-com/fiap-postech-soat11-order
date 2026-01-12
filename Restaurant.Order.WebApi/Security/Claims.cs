@@ -23,7 +23,7 @@ public class Claims
 
     public class ProductType
     {
-        public const string GetList = "order:product:get-list";        
+        public const string GetList = "order:product:get-list";
     }
 
 

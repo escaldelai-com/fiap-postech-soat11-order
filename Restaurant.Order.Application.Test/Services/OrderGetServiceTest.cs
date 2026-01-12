@@ -18,10 +18,10 @@ public class OrderGetServiceTest : TestBase
         var service = new OrderGetService(repo.Object);
         var orderId = GetGuid();
         var order = new OrderInfoDto { Id = orderId };
-        repo.Setup(x => x.Get(orderId)).ReturnsAsync(order);
+        repo.Setup(x => x.GetById(orderId)).ReturnsAsync(order);
 
         // Act
-        var result = await service.Get(orderId);
+        var result = await service.GetById(orderId);
 
         // Assert
         result.Should().BeEquivalentTo(order);
@@ -34,10 +34,10 @@ public class OrderGetServiceTest : TestBase
         var repo = new Mock<IOrderRepository>();
         var service = new OrderGetService(repo.Object);
         var orderId = GetGuid();
-        repo.Setup(x => x.Get(orderId)).ReturnsAsync(() => null);
+        repo.Setup(x => x.GetById(orderId)).ReturnsAsync(() => null);
 
         // Act
-        var act = () => service.Get(orderId);
+        var act = () => service.GetById(orderId);
 
         // Assert
         await act.Should().ThrowAsync<NotFoundException>();

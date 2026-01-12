@@ -7,7 +7,7 @@ public class SequenceRepository(
     IDatabase context) : ISequenceRepository
 {
 
-    public async Task<int> Get(string prefix)
+    public async Task<int> GetByPrefix(string prefix)
     {
         var key = $"{prefix}:seq:{DateTime.Now:yyyyMMdd}";
         var seq = await context.HashIncrementAsync(key, "seq", 1);
